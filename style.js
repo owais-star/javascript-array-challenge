@@ -1,30 +1,22 @@
-
-console.clear();
-
-let a;
+let usersData
 
 function studentsByGroup(students) {
-    fetch("https://mocki.io/v1/fcf2152e-707f-43c4-bb50-43c2ff29e697")
-        .then((response) => response.json())
-        .then((data) => (a = data));
+  fetch("https://mocki.io/v1/fcf2152e-707f-43c4-bb50-43c2ff29e697")
+    .then((response) => response.json())
+    .then((data) => (usersData = data));
 }
 
 studentsByGroup();
 
 setTimeout(() => {
-    console.log(a);
-    const over18 = a.filter(user => user?.age >= 18);
-    const result = over18.reduce((obj, cur) => ({ ...obj, [cur.group]: [cur] }), {})
-    console.log(result)
+  console.log(usersData)
+  const over18Users = usersData.filter(user => user?.age >= 18)
+  const result = over18Users.reduce((userData, currentUser) => (
+    { ...userData, [currentUser.group]: [currentUser] }), {}
+  )
+  console.log(result)
 }, "2000");
 
-// let b;
-
-// const result = a.reduce((obj, cur) => ({...obj, [cur.group]: cur}), {})
-
-
-
-// console.log(result)
 
 /* expected output: arrToObj(payload) ->
 
